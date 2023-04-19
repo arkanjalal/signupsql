@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +87,7 @@ if(isset($_POST['submit'])){
 $host="localhost";
 $username ="root" ;
 $password ="";
-$dbname ="web2";
+$dbname ="arkan";
 
 $conn2 = mysqli_connect($host,$username,$password,$dbname);
 
@@ -98,6 +99,7 @@ if(isset($_POST['submit'])){
 	
     $fileName=$_FILES['image']['name'];
     $hash = password_hash($password, PASSWORD_DEFAULT);
+    $q="insert into users set user_name='$userName', email='$email', password='$hash', gender='$gender', file_name='$fileName'";
     $sql = "insert into users set name=?, email=?, password=?, gender=?, file_name=?";
     $sql = mysqli_prepare($conn2,$sql);
     mysqli_stmt_bind_param($sql ,"sssss",$name,$email,$hash,$gender,$fileName);
